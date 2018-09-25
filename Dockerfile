@@ -17,11 +17,17 @@ LABEL name="Rocket.Chat" \
 # This is ugly... But for some reason npm and node aren't available at this stage.
 ENV PATH /opt/rh/rh-nodejs8/root/usr/bin:/opt/app-root/src/node_modules/.bin/:/opt/app-root/src/.npm-global/bin/:/opt/app-root/src/bin:/opt/app-root/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
+# RUN set -x \
+#  && gpg --keyserver ha.pool.sks-keyservers.net --recv-keys 0E163286C20D07B9787EBE9FD7F9D0414FD08104 \
+#  && curl -SLf "https://releases.rocket.chat/${RC_VERSION}/download" -o rocket.chat.tgz \
+#  && curl -SLf "https://releases.rocket.chat/${RC_VERSION}/asc" -o rocket.chat.tgz.asc \
+#  && gpg --verify rocket.chat.tgz.asc \
+#  && tar -zxf rocket.chat.tgz -C /opt/app-root/src/ \
+#  && cd /opt/app-root/src/bundle/programs/server \
+#  && npm install
+
 RUN set -x \
- && gpg --keyserver ha.pool.sks-keyservers.net --recv-keys 0E163286C20D07B9787EBE9FD7F9D0414FD08104 \
  && curl -SLf "https://releases.rocket.chat/${RC_VERSION}/download" -o rocket.chat.tgz \
- && curl -SLf "https://releases.rocket.chat/${RC_VERSION}/asc" -o rocket.chat.tgz.asc \
- && gpg --verify rocket.chat.tgz.asc \
  && tar -zxf rocket.chat.tgz -C /opt/app-root/src/ \
  && cd /opt/app-root/src/bundle/programs/server \
  && npm install
