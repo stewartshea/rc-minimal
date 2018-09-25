@@ -44,7 +44,7 @@ ENV LD_PRELOAD=/opt/app-root/src/bundle/programs/server/npm/node_modules/sharp/v
 
 ENV DEPLOY_METHOD=docker-redhat \
     NODE_ENV=production \
-    MONGO_URL=mongodb://mongo:27017/rocketchat \
+    MONGO_URL=mongodb://dbuser:dbpassword@mongo:27017/rocketchat \
     HOME=/tmp \
     PORT=3000 \
     ROOT_URL=http://localhost:3000
